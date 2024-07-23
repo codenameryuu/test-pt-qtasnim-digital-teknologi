@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->bigInteger('price')
+            $table->bigInteger('stock')
                 ->default(0);
 
             $table->softDeletes();

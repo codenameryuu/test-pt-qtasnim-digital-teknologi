@@ -16,13 +16,52 @@ class ProductSeeder extends Seeder
     {
         $faker = Factory::create('id_ID');
 
-        for ($i = 1; $i <= 50; $i++) {
-            $data = [
-                'name' => 'Samsung J' . $i . ' Prime',
-                'price' => $faker->randomNumber(5, true),
-            ];
+        $data = [
+            'product_category_id' => 1,
+            'name' => 'Kopi',
+            'stock' => 100,
+        ];
 
-            Product::create($data);
-        }
+        Product::create($data);
+
+        $data = [
+            'product_category_id' => 1,
+            'name' => 'Teh',
+            'stock' => 100,
+        ];
+
+        Product::create($data);
+
+        $data = [
+            'product_category_id' => 1,
+            'name' => 'Kopi',
+            'stock' => 90,
+        ];
+
+        Product::create($data);
+
+        $data = [
+            'product_category_id' => 2,
+            'name' => 'Pasta Gigi',
+            'stock' => 100,
+        ];
+
+        Product::create($data);
+
+        $data = [
+            'product_category_id' => 2,
+            'name' => 'Sabun Mandi',
+            'stock' => 100,
+        ];
+
+        Product::create($data);
+
+        $data = [
+            'product_category_id' => 2,
+            'name' => 'Sampo',
+            'stock' => 100,
+        ];
+
+        Product::create($data);
     }
 }

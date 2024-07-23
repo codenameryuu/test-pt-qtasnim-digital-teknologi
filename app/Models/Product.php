@@ -5,22 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Carbon;
 
 use EloquentFilter\Filterable;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\HasMedia;
 
 use App\Filters\ProductFilter;
 
 use App\Helpers\HashHelper;
-use App\Helpers\StorageHelper;
 
 use App\Traits\PaginateData;
 
-class Product extends Model implements HasMedia
+class Product extends Model
 {
-    use Filterable, InteractsWithMedia, HasFactory, PaginateData, SoftDeletes;
+    use Filterable, HasFactory, PaginateData, SoftDeletes;
 
     /*
     |-----------------------------------------------------------------------------
@@ -84,63 +80,12 @@ class Product extends Model implements HasMedia
         return HashHelper::encrypt($this->id);
     }
 
-    /**
-     ** Get image attribute.
-     *
-     * @return string
-     */
-    public function getImageAttribute()
-    {
-        $result = null;
-        $media = $this->getFirstMedia('produk');
-
-        if ($media) {
-            $result =  $media->getUrl();
-        } else {
-            $result = StorageHelper::getUrlDefaultFile('image');
-        }
-
-        return $result;
-    }
-
     /*
     |-----------------------------------------------------------------------------
     | STATIC METHOD(s)
     | ----------------------------------------------------------------------------
     | // ! write your static method(s) below, to maintain code readability
     */
-
-    /**
-     ** Save image.
-     *
-     * @param $id
-     * @param $file
-     * @return void
-     */
-    public static function saveImage($id, $file)
-    {
-        $timestamp = Carbon::now()->isoFormat('YYYYMMDDHHmmss');
-        $uniqueSuffix = uniqid();
-        $fileExtension = $file->getClientOriginalExtension();
-        $newFileName = "{$timestamp}{$uniqueSuffix}.{$fileExtension}";
-
-        Product::firstWhere('id', $id)
-            ->addMediaFromRequest('image')
-            ->usingFileName($newFileName)
-            ->toMediaCollection('produk', 's3');
-    }
-
-    /**
-     ** Delete image.
-     * 
-     * @param $id
-     * @return void
-     */
-    public static function deleteImage($id)
-    {
-        Product::firstWhere('id', $id)
-            ->clearMediaCollection('produk');
-    }
 
     /*
     |-----------------------------------------------------------------------------

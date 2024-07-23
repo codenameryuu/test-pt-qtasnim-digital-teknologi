@@ -15,17 +15,7 @@ namespace App\Models{
 /**
  * 
  *
- * @property int $id
- * @property int|null $product_category_id
- * @property string $name
- * @property int $price
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
- * @property-read string $image
- * @property-read \Spatie\MediaLibrary\MediaCollections\Models\Collections\MediaCollection<int, \Spatie\MediaLibrary\MediaCollections\Models\Media> $media
- * @property-read int|null $media_count
  * @property-read \App\Models\ProductCategory|null $productCategory
  * @method static \Illuminate\Database\Eloquent\Builder|Product filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Product getPaginatedData($paginate = true, $page = 1, $perPage = 20, $sortKey = 'id', $sortOrder = 'asc', $search = null, $withRelations = [], $filters = [], $appends = [])
@@ -36,31 +26,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Product query()
  * @method static \Illuminate\Database\Eloquent\Builder|Product simplePaginateFilter($perPage = null, $columns = [], $pageName = 'page', $page = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereBeginsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereEndsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product whereLike($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereProductCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Product withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Product withoutTrashed()
  */
-	class Product extends \Eloquent implements \Spatie\MediaLibrary\HasMedia {}
+	class Product extends \Eloquent {}
 }
 
 namespace App\Models{
 /**
  * 
  *
- * @property int $id
- * @property string $name
- * @property string|null $description
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory getPaginatedData($paginate = true, $page = 1, $perPage = 20, $sortKey = 'id', $sortOrder = 'asc', $search = null, $withRelations = [], $filters = [], $appends = [])
@@ -71,14 +48,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory query()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory simplePaginateFilter($perPage = null, $columns = [], $pageName = 'page', $page = null)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereBeginsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereEndsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereLike($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|ProductCategory withoutTrashed()
  */
@@ -89,14 +60,30 @@ namespace App\Models{
 /**
  * 
  *
- * @property int $id
- * @property string $email
+ * @property-read string $hash_id
+ * @property-read \App\Models\Product|null $product
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction filter(array $input = [], $filter = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction getPaginatedData($paginate = true, $page = 1, $perPage = 20, $sortKey = 'id', $sortOrder = 'asc', $search = null, $withRelations = [], $filters = [], $appends = [])
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction paginateFilter($perPage = null, $columns = [], $pageName = 'page', $page = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction simplePaginateFilter($perPage = null, $columns = [], $pageName = 'page', $page = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereBeginsWith($column, $value, $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereEndsWith($column, $value, $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereLike($column, $value, $boolean = 'and')
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction withTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Transaction withoutTrashed()
+ */
+	class Transaction extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * 
+ *
  * @property mixed $password
- * @property \Illuminate\Support\Carbon|null $email_verified_at
- * @property string|null $remember_token
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Client> $clients
  * @property-read int|null $clients_count
  * @property-read string $hash_id
@@ -114,16 +101,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User simplePaginateFilter($perPage = null, $columns = [], $pageName = 'page', $page = null)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereBeginsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEndsWith($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereLike($column, $value, $boolean = 'and')
- * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|User withoutTrashed()
  */

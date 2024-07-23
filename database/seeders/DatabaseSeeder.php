@@ -14,8 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PassportSeeder::class,
             // UserSeeder::class,
-            // ProductCategorySeeder::class,
-            // ProductSeeder::class,
+            ProductCategorySeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

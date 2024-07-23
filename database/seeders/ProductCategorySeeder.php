@@ -17,15 +17,15 @@ class ProductCategorySeeder extends Seeder
         $faker = Factory::create('id_ID');
 
         $data = [
-            'name' => 'Elektronik',
-            'description' => 'Kategori elektronik',
+            'name' => 'Konsumsi',
+            'description' => 'Kategori konsumsi',
         ];
 
         ProductCategory::create($data);
 
         $data = [
-            'name' => 'Mebel',
-            'description' => 'Kategori mebel',
+            'name' => 'Pembersih',
+            'description' => 'Kategori pembersih',
         ];
 
         ProductCategory::create($data);
