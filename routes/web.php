@@ -10,3 +10,5 @@
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+require __DIR__ . '/web/product_category_route.php';
