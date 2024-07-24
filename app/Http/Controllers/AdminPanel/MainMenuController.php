@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 
 use App\Http\Controllers\Controller;
 
-class DashboardController extends Controller
+class MainMenuController extends Controller
 {
     /**
      ** Index.
@@ -16,6 +16,6 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        return view('dashboard.index');
+        return view('main_menu.index');
     }
 }

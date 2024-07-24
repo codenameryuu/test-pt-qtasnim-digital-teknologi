@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminPanel\ProductCategoryController;
 Route::group(
     [
         'as' => 'product-category.',
-        'middleware' => [],
+        'middleware' => ['auth'],
         'prefix' => 'kategori-produk',
     ],
     function () {

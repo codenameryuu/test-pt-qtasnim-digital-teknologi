@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminPanel\TransactionController;
 Route::group(
     [
         'as' => 'transaction.',
-        'middleware' => [],
+        'middleware' => ['auth'],
         'prefix' => 'transaksi',
     ],
     function () {

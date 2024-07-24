@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminPanel\ProductController;
 Route::group(
     [
         'as' => 'product.',
-        'middleware' => [],
+        'middleware' => ['auth'],
         'prefix' => 'produk',
     ],
     function () {

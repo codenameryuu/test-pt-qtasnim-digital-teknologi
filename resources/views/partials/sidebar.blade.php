@@ -9,10 +9,10 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li class="{{ request()->is('/') ? 'active' : '' }}">
-                <a href="{{ url('/') }}">
+            <li class="{{ request()->is('menu-utama*') ? 'active' : '' }}">
+                <a href="{{ url('menu-utama') }}">
                     <i class="ti ti-home me-2"></i>
-                    Dashboard
+                    Main Menu
                 </a>
             </li>
 
