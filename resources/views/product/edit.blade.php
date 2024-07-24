@@ -23,6 +23,8 @@
                     @method('PUT')
 
                     <div class="row">
+                        <input type="hidden" name="id" id="id" value="{{ $product->hash_id }}">
+
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="mb-3">
                                 <label class="form-label" for="productCategoryId">

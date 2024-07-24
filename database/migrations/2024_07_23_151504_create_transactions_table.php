@@ -20,9 +20,6 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->bigInteger('stock')
-                ->default(0);
-
             $table->bigInteger('quantity')
                 ->default(0);
 

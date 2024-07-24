@@ -33,14 +33,6 @@ class ProductSeeder extends Seeder
         Product::create($data);
 
         $data = [
-            'product_category_id' => 1,
-            'name' => 'Kopi',
-            'stock' => 90,
-        ];
-
-        Product::create($data);
-
-        $data = [
             'product_category_id' => 2,
             'name' => 'Pasta Gigi',
             'stock' => 100,

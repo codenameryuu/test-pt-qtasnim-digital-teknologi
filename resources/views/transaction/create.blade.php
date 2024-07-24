@@ -6,10 +6,10 @@
             <div class="card-body">
                 <div class="mb-4">
                     <h5 class="mb-3">
-                        Ubah Data
+                        Tambah Data
                     </h5>
 
-                    <a href="{{ url('kategori-produk') }}">
+                    <a href="{{ url('transaksi') }}">
                         <button type="button" class="btn btn-secondary">
                             <i class="menu-icon tf-icons ti ti-arrow-left"></i>
                             Kembali
@@ -20,30 +20,37 @@
                 <form class="mb-3" id="formSubmit" method="POST" action="javascript:void(0)"
                     enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
 
                     <div class="row">
-                        <input type="hidden" name="id" id="id" value="{{ $productCategory->hash_id }}">
-
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="mb-3">
-                                <label class="form-label" for="name">
-                                    Nama
+                                <label class="form-label" for="productId">
+                                    Produk
                                 </label>
 
-                                <input type="text" class="form-control" name="name" id="name"
-                                    value="{{ $productCategory->name }}" placeholder="Masukan Nama" autocomplete="off">
+                                <select class="form-select select2" name="productId" id="productId"
+                                    onchange="onChangeProductId()">
+                                    <option value="">
+                                        Pilih salah satu
+                                    </option>
+
+                                    @foreach ($product as $row)
+                                        <option value="{{ $row->hash_id }}">
+                                            {{ $row->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
 
                         <div class="col-lg-12 col-md-12 col-sm-12">
                             <div class="mb-3">
-                                <label class="form-label" for="description">
-                                    Deskripsi
+                                <label class="form-label" for="quantity">
+                                    Jumlah
                                 </label>
 
-                                <textarea class="form-control" name="description" id="description" placeholder="Masukan Deskripsi" autocomplete="off"
-                                    cols="30" rows="5">{{ $productCategory->description }}</textarea>
+                                <input type="text" class="form-control regex-number" name="quantity" id="quantity"
+                                    onkeyup="formatNumber(this)" placeholder="Masukan Jumlah" autocomplete="off" readonly>
                             </div>
                         </div>
                     </div>
@@ -63,5 +70,5 @@
 
 @section('custom_js')
     {{-- * Custom JS --}}
-    <script src="{{ asset('assets/custom/product_category/edit.js') }}"></script>
+    <script src="{{ asset('assets/custom/transaction/create.js') }}"></script>
 @endsection
