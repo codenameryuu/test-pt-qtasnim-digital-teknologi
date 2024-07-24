@@ -41,7 +41,6 @@ class Product extends Model
      */
     protected $appends = [
         'hash_id',
-        'image',
     ];
 
     /**

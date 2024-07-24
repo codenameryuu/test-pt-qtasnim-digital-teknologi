@@ -23,7 +23,7 @@
     <script src="{{ asset('assets/vendor/libs/block-ui/block-ui.js') }}"></script>
 
     {{-- * Bootstrap Css --}}
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" class="theme-opt" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/vendor/libs/bootstrap-5.3/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
 
     {{-- * Datatable --}}
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
@@ -54,7 +54,8 @@
     <script src="{{ asset('assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
 
     {{-- * Select2 --}}
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/css/select2.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/select2/css/select2-bootstrap.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.css') }}" />
 
     {{-- * Style Css --}}
@@ -104,7 +105,7 @@
     <script src="{{ asset('assets/helper/block-card.js') }}"></script>
 
     {{-- * Bootstrap --}}
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/bootstrap-5.3/js/bootstrap.bundle.min.js') }}"></script>
 
     {{-- * Datatable --}}
     <script src="{{ asset('assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
@@ -124,7 +125,7 @@
     <script src="{{ asset('assets/helper/regex.js') }}"></script>
 
     {{-- * Select2 --}}
-    <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
+    <script src="{{ asset('assets/vendor/libs/select2/js/select2.js') }}"></script>
     <script src="{{ asset('assets/vendor/libs/bootstrap-select/bootstrap-select.js') }}"></script>
     <script src="{{ asset('assets/helper/select2-translation.js') }}"></script>
     <script src="{{ asset('assets/helper/select2.js') }}"></script>

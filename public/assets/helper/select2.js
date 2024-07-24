@@ -8,6 +8,7 @@ if (select2.length) {
       placeholder: "Pilih Salah Satu",
       allowClear: true,
       dropdownParent: element.parent(),
+      theme: "bootstrap-5",
     });
   });
 }

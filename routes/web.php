@@ -12,3 +12,4 @@
 */
 
 require __DIR__ . '/web/product_category_route.php';
+require __DIR__ . '/web/product_route.php';
