@@ -43,6 +43,16 @@ function loadDatatable() {
       },
 
       {
+        data: "highestQuantityTransaction",
+        name: "highestQuantityTransaction",
+      },
+
+      {
+        data: "lowestQuantityTransaction",
+        name: "lowestQuantityTransaction",
+      },
+
+      {
         data: "action",
         name: "action",
         orderable: false,

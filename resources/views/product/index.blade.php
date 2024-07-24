@@ -39,6 +39,14 @@
                             </th>
 
                             <th>
+                                Transaksi Paling Banyak
+                            </th>
+
+                            <th>
+                                Transaksi Paling Sedikit
+                            </th>
+
+                            <th>
                                 Aksi
                             </th>
                         </tr>

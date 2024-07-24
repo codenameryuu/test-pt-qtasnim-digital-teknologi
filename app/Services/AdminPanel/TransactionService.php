@@ -4,6 +4,7 @@ namespace App\Services\AdminPanel;
 
 use Yajra\DataTables\Facades\DataTables;
 
+use App\Helpers\CheckHelper;
 use App\Helpers\FormatterHelper;
 use App\Helpers\HashHelper;
 use App\Helpers\MessageHelper;
@@ -14,6 +15,43 @@ use App\Models\Transaction;
 class TransactionService
 {
     /**
+     ** Index service.
+     *
+     * @param $request
+     * @return object
+     */
+    public function index($request)
+    {
+        $filter = [
+            'startDate' => null,
+            'endDate' => null,
+        ];
+
+        if (CheckHelper::isset($request->filter)) {
+            if (CheckHelper::issetArray($request->filter, 'startDate')) {
+                $filter['startDate'] = $request->filter['startDate'];
+            }
+
+            if (CheckHelper::issetArray($request->filter, 'endDate')) {
+                $filter['endDate'] = $request->filter['endDate'];
+            }
+        }
+
+        $filter = (object) $filter;
+
+        $status = true;
+        $message = MessageHelper::retrieveSuccess();
+
+        $result = (object) [
+            'status' => $status,
+            'message' => $message,
+            'filter' => $filter,
+        ];
+
+        return $result;
+    }
+
+    /**
      ** Datatable service.
      *
      * @param $request
@@ -21,7 +59,13 @@ class TransactionService
      */
     public function datatable($request)
     {
-        $transaction = Transaction::orderBy('created_at', 'asc')
+        $transaction = Transaction::when($request->filterStartDate, function ($query) use ($request) {
+            $query->whereDate('created_at', '>=', $request->filterStartDate);
+        })
+            ->when($request->filterEndDate, function ($query) use ($request) {
+                $query->whereDate('created_at', '<=', $request->filterEndDate);
+            })
+            ->orderBy('created_at', 'asc')
             ->get();
 
         $transaction = Datatables::of($transaction)

@@ -31,11 +31,16 @@ class TransactionController extends Controller
     /**
      ** Index.
      *
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('transaction.index');
+        $result = $this->transactionService->index($request);
+
+        return view('transaction.index', [
+            'filter' => $result->filter,
+        ]);
     }
 
     /**

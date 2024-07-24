@@ -9,8 +9,8 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
-                <a href="{{ url('dashboard') }}">
+            <li class="{{ request()->is('/') ? 'active' : '' }}">
+                <a href="{{ url('/') }}">
                     <i class="ti ti-home me-2"></i>
                     Dashboard
                 </a>

@@ -4,6 +4,8 @@ $(document).ready(function () {
 
 function loadDatatable() {
   const datatable = $("#datatable");
+  const filterStartDate = $("#filterStartDate");
+  const filterEndDate = $("#filterEndDate");
 
   datatable.DataTable({
     processing: true,
@@ -11,7 +13,10 @@ function loadDatatable() {
     order: [],
     ajax: {
       url: "/transaksi/datatable",
-      data: {},
+      data: {
+        filterStartDate: filterStartDate.val(),
+        filterEndDate: filterEndDate.val(),
+      },
     },
     columnDefs: [
       {
@@ -60,6 +65,23 @@ function loadDatatable() {
       },
     ],
   });
+}
+
+function submitFilter() {
+  const formFilter = $("#formFilter");
+
+  const startDate = $("#filterStartDate");
+  const endDate = $("#filterEndDate");
+
+  if (!startDate.val()) {
+    startDate.attr("name", "");
+  }
+
+  if (!endDate.val()) {
+    endDate.attr("name", "");
+  }
+
+  formFilter.attr("action", "/transaksi").submit();
 }
 
 function confirmDelete(id) {

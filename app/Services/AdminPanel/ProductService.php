@@ -10,6 +10,7 @@ use App\Helpers\MessageHelper;
 
 use App\Models\ProductCategory;
 use App\Models\Product;
+use App\Models\Transaction;
 
 class ProductService
 {
@@ -30,6 +31,32 @@ class ProductService
             })
             ->addColumn('stockCustom', function ($row) {
                 return FormatterHelper::formatNumber($row->stock);
+            })
+            ->addColumn('highestQuantityTransaction', function ($row) {
+                $transaction = Transaction::where('product_id', $row->id)
+                    ->orderBy('quantity', 'desc')
+                    ->first();
+
+                $quantity = 0;
+
+                if ($transaction) {
+                    $quantity = $transaction->quantity;
+                }
+
+                return FormatterHelper::formatNumber($quantity);
+            })
+            ->addColumn('lowestQuantityTransaction', function ($row) {
+                $transaction = Transaction::where('product_id', $row->id)
+                    ->orderBy('quantity', 'asc')
+                    ->first();
+
+                $quantity = 0;
+
+                if ($transaction) {
+                    $quantity = $transaction->quantity;
+                }
+
+                return FormatterHelper::formatNumber($quantity);
             })
             ->addColumn('action', function ($row) {
                 $edit =
@@ -68,6 +95,8 @@ class ProductService
             })
             ->rawColumns([
                 'productCategoryName',
+                'highestQuantityTransaction',
+                'lowestQuantityTransaction',
                 'action',
             ])
             ->make(true);

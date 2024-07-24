@@ -51,7 +51,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-primary w-100" id="btnSubmit">
-                                Submit
+                                Simpan
                             </button>
                         </div>
                     </div>

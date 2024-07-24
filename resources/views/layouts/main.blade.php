@@ -90,6 +90,8 @@
                         @include('partials.alert')
 
                         @yield('content')
+
+                        @yield('modal')
                     </div>
                 </div>
             </div>
