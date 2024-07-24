@@ -5,9 +5,9 @@ namespace App\Services\Api;
 use App\Helpers\CheckHelper;
 use App\Helpers\MessageHelper;
 
-use App\Models\Product;
+use App\Models\Transaction;
 
-class ProductApiService
+class TransactionApiService
 {
     /**
      ** Index service.
@@ -28,11 +28,11 @@ class ProductApiService
             $filter['search'] = $request->search;
         }
 
-        $product = Product::filter($filter)
+        $transaction = Transaction::filter($filter)
             ->getPaginatedData(true, $request->page, $request->per_page, $sortKey, $sortOrder);
 
-        $data = $product->data;
-        $pagination = $product->pagination;
+        $data = $transaction->data;
+        $pagination = $transaction->pagination;
 
         $result = (object) [
             'status' => $status,
@@ -55,7 +55,7 @@ class ProductApiService
         $status = true;
         $message = MessageHelper::retrieveSuccess();
 
-        $data = Product::firstWhere('id', $request->product_id);
+        $data = Transaction::firstWhere('id', $request->transaction_id);
 
         $result = (object) [
             'status' => $status,
@@ -78,14 +78,13 @@ class ProductApiService
         $message = MessageHelper::saveSuccess();
 
         $data = [
-            'product_category_id' => $request->product_category_id,
-            'name' => $request->name,
-            'stock' => $request->stock,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ];
 
-        $product = Product::create($data);
+        $transaction = Transaction::create($data);
 
-        $data = Product::firstWhere('id', $product->id);
+        $data = Transaction::firstWhere('id', $transaction->id);
 
         $result = (object) [
             'status' => $status,
@@ -108,15 +107,14 @@ class ProductApiService
         $message = MessageHelper::saveSuccess();
 
         $data = [
-            'product_category_id' => $request->product_category_id,
-            'name' => $request->name,
-            'stock' => $request->stock,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ];
 
-        Product::where('id', $request->product_id)
+        Transaction::where('id', $request->transaction_id)
             ->update($data);
 
-        $data = Product::firstWhere('id', $request->product_id);
+        $data = Transaction::firstWhere('id', $request->transaction_id);
 
         $result = (object) [
             'status' => $status,
@@ -138,7 +136,7 @@ class ProductApiService
         $status = true;
         $message = MessageHelper::deleteSuccess();
 
-        Product::where('id', $request->product_id)
+        Transaction::where('id', $request->transaction_id)
             ->delete();
 
         $result = (object) [

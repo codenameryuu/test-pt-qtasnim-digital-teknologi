@@ -24,7 +24,7 @@ class ProductFilter extends ModelFilter
     {
         return $this->where(function ($query) use ($search) {
             return $query->where('name', 'like', '%' . $search . '%')
-                ->orWhereRaw('CAST(price AS CHAR) LIKE ?', "%{$search}%");
+                ->orWhereRaw('CAST(stock AS CHAR) LIKE ?', "%{$search}%");
         });
     }
 }

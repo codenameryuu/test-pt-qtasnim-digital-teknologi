@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 
 use App\Helpers\MessageHelper;
 
-class ProductCategoryApiValidation
+class TransactionApiValidation
 {
     /**
      ** Index validation.
@@ -36,8 +36,7 @@ class ProductCategoryApiValidation
             'sort_key' => [
                 'required',
                 Rule::in([
-                    'name',
-                    'description',
+                    'quantity',
                     'created_at'
                 ]),
             ],
@@ -68,7 +67,7 @@ class ProductCategoryApiValidation
             'per_page.min' => 'Jumlah per halaman minimal bernilai 1 !',
 
             'sort_key.required' => 'Urutan berdasarkan tidak boleh kosong !',
-            'sort_key.in' => 'Urutan berdasarkan harus berisi name, description, atau created_at !',
+            'sort_key.in' => 'Urutan berdasarkan harus berisi quantity, atau created_at !',
 
             'sort_order.required' => 'Tipe urutan tidak boleh kosong !',
             'sort_order.in' => 'Tipe urutan harus berisi ASC atau DESC !',
@@ -103,21 +102,21 @@ class ProductCategoryApiValidation
         $message = MessageHelper::validateSuccess();
 
         $schema = [
-            'product_category_id' => [
+            'transaction_id' => [
                 'required',
                 'numeric',
-                Rule::exists('product_categories', 'id'),
+                Rule::exists('transactions', 'id'),
             ],
         ];
 
         $errorMessage = [
-            'product_category_id.required' => 'ID kategori produk tidak boleh kosong !',
-            'product_category_id.numeric' => 'ID kategori produk harus berupa angka !',
-            'product_category_id.exists' => 'ID kategori produk tidak ditemukan !',
+            'transaction_id.required' => 'ID transaksi tidak boleh kosong !',
+            'transaction_id.numeric' => 'ID transaksi harus berupa angka !',
+            'transaction_id.exists' => 'ID transaksi tidak ditemukan !',
         ];
 
         $data = [
-            'product_category_id' => $request->product_category_id,
+            'transaction_id' => $request->transaction_id,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -142,24 +141,32 @@ class ProductCategoryApiValidation
         $message = MessageHelper::validateSuccess();
 
         $schema = [
-            'name' => [
+            'product_id' => [
                 'required',
+                'numeric',
+                Rule::exists('products', 'id'),
             ],
 
-            'description' => [
+            'quantity' => [
                 'required',
+                'numeric',
+                'min:1',
             ],
         ];
 
         $errorMessage = [
-            'name.required' => 'Nama kategori produk tidak boleh kosong !',
+            'product_id.required' => 'ID produk tidak boleh kosong !',
+            'product_id.numeric' => 'ID produk harus berupa angka !',
+            'product_id.exists' => 'ID produk tidak ditemukan !',
 
-            'description.required' => 'Deskripsi kategori produk tidak boleh kosong !',
+            'quantity.required' => 'Jumlah tidak boleh kosong !',
+            'quantity.numeric' => 'Jumlah harus berupa angka !',
+            'quantity.min' => 'Jumlah minimal bernilai 1 !',
         ];
 
         $data = [
-            'name' => $request->name,
-            'description' => $request->description,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -184,35 +191,43 @@ class ProductCategoryApiValidation
         $message = MessageHelper::validateSuccess();
 
         $schema = [
-            'product_category_id' => [
+            'transaction_id' => [
                 'required',
                 'numeric',
-                Rule::exists('product_categories', 'id'),
+                Rule::exists('transactions', 'id'),
             ],
 
-            'name' => [
-                'required'
+            'product_id' => [
+                'required',
+                'numeric',
+                Rule::exists('products', 'id'),
             ],
 
-            'description' => [
-                'required'
+            'quantity' => [
+                'required',
+                'numeric',
+                'min:1',
             ],
         ];
 
         $errorMessage = [
-            'product_category_id.required' => 'ID kategori produk tidak boleh kosong !',
-            'product_category_id.numeric' => 'ID kategori produk harus berupa angka !',
-            'product_category_id.exists' => 'ID kategori produk tidak ditemukan !',
+            'transaction_id.required' => 'ID transaksi tidak boleh kosong !',
+            'transaction_id.numeric' => 'ID transaksi harus berupa angka !',
+            'transaction_id.exists' => 'ID transaksi tidak ditemukan !',
 
-            'name.required' => 'Nama kategori produk tidak boleh kosong !',
+            'product_id.required' => 'ID produk tidak boleh kosong !',
+            'product_id.numeric' => 'ID produk harus berupa angka !',
+            'product_id.exists' => 'ID produk tidak ditemukan !',
 
-            'description.required' => 'Deskripsi kategori produk tidak boleh kosong !',
+            'quantity.required' => 'Jumlah tidak boleh kosong !',
+            'quantity.numeric' => 'Jumlah harus berupa angka !',
+            'quantity.min' => 'Jumlah minimal bernilai 1 !',
         ];
 
         $data = [
-            'product_category_id' => $request->product_category_id,
-            'name' => $request->name,
-            'description' => $request->description,
+            'transaction_id' => $request->transaction_id,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -237,21 +252,21 @@ class ProductCategoryApiValidation
         $message = MessageHelper::validateSuccess();
 
         $schema = [
-            'product_category_id' => [
+            'transaction_id' => [
                 'required',
                 'numeric',
-                Rule::exists('product_categories', 'id'),
+                Rule::exists('transactions', 'id'),
             ],
         ];
 
         $errorMessage = [
-            'product_category_id.required' => 'ID kategori produk tidak boleh kosong !',
-            'product_category_id.numeric' => 'ID kategori produk harus berupa angka !',
-            'product_category_id.exists' => 'ID kategori produk tidak ditemukan !',
+            'transaction_id.required' => 'ID transaksi tidak boleh kosong !',
+            'transaction_id.numeric' => 'ID transaksi harus berupa angka !',
+            'transaction_id.exists' => 'ID transaksi tidak ditemukan !',
         ];
 
         $data = [
-            'product_category_id' => $request->product_category_id,
+            'transaction_id' => $request->transaction_id,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();

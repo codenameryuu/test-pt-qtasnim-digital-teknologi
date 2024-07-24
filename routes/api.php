@@ -14,3 +14,4 @@
 require __DIR__ . '/api/auth_route.php';
 require __DIR__ . '/api/product_category_route.php';
 require __DIR__ . '/api/product_route.php';
+require __DIR__ . '/api/transaction_route.php';

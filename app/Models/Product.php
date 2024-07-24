@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use EloquentFilter\Filterable;
 
 use App\Filters\ProductFilter;
-
+use App\Helpers\FormatterHelper;
 use App\Helpers\HashHelper;
 
 use App\Traits\PaginateData;
@@ -41,6 +41,8 @@ class Product extends Model
      */
     protected $appends = [
         'hash_id',
+        'highest_quantity_transaction',
+        'lowest_quantity_transaction',
     ];
 
     /**
@@ -77,6 +79,46 @@ class Product extends Model
     public function getHashIdAttribute()
     {
         return HashHelper::encrypt($this->id);
+    }
+
+    /**
+     ** Get highest quantity transaction attribute.
+     *
+     * @return string
+     */
+    public function getHighestQuantityTransactionAttribute()
+    {
+        $transaction = Transaction::where('product_id', $this->id)
+            ->orderBy('quantity', 'desc')
+            ->first();
+
+        $quantity = 0;
+
+        if ($transaction) {
+            $quantity = $transaction->quantity;
+        }
+
+        return $quantity;
+    }
+
+    /**
+     ** Get lowest quantity transaction attribute.
+     *
+     * @return string
+     */
+    public function getLowestQuantityTransactionAttribute()
+    {
+        $transaction = Transaction::where('product_id', $this->id)
+            ->orderBy('quantity', 'asc')
+            ->first();
+
+        $quantity = 0;
+
+        if ($transaction) {
+            $quantity = $transaction->quantity;
+        }
+
+        return $quantity;
     }
 
     /*

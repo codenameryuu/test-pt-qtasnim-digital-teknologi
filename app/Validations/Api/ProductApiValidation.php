@@ -5,7 +5,6 @@ namespace App\Validations\Api;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-use App\Helpers\HashHelper;
 use App\Helpers\MessageHelper;
 
 class ProductApiValidation
@@ -38,7 +37,7 @@ class ProductApiValidation
                 'required',
                 Rule::in([
                     'name',
-                    'price',
+                    'stock',
                     'created_at',
                 ]),
             ],
@@ -66,7 +65,7 @@ class ProductApiValidation
             'per_page.min' => 'Jumlah per halaman minimal bernilai 1 !',
 
             'sort_key.required' => 'Urutan berdasarkan tidak boleh kosong !',
-            'sort_key.in' => 'Urutan berdasarkan harus berisi name, price, atau created_at !',
+            'sort_key.in' => 'Urutan berdasarkan harus berisi name, stock, atau created_at !',
 
             'sort_order.required' => 'Tipe urutan tidak boleh kosong !',
             'sort_order.in' => 'Tipe urutan harus berisi ASC atau DESC !',
@@ -113,7 +112,7 @@ class ProductApiValidation
         ];
 
         $data = [
-            'product_id' => HashHelper::decrypt($request->product_id),
+            'product_id' => $request->product_id,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -148,16 +147,10 @@ class ProductApiValidation
                 'required',
             ],
 
-            'price' => [
+            'stock' => [
                 'required',
                 'numeric',
                 'min:1',
-            ],
-
-            'image' => [
-                'nullable',
-                'image',
-                'mimes:jpeg,png,jpg',
             ],
         ];
 
@@ -168,19 +161,15 @@ class ProductApiValidation
 
             'name.required' => 'Nama produk tidak boleh kosong !',
 
-            'price.required' => 'Harga produk tidak boleh kosong !',
-            'price.numeric' => 'Harga produk harus berupa angka !',
-            'price.min' => 'Harga produk minimal bernilai 1 !',
-
-            'image.image' => 'Tipe file gambar bermasalah !',
-            'image.mimes' => 'Gambar harus berupa format jpeg, png, atau jpg !',
+            'stock.required' => 'Stok produk tidak boleh kosong !',
+            'stock.numeric' => 'Stok produk harus berupa angka !',
+            'stock.min' => 'Stok produk minimal bernilai 1 !',
         ];
 
         $data = [
-            'product_category_id' => HashHelper::decrypt($request->product_category_id),
+            'product_category_id' => $request->product_category_id,
             'name' => $request->name,
-            'price' => $request->price,
-            'image' => $request->image,
+            'stock' => $request->stock,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -221,7 +210,7 @@ class ProductApiValidation
                 'required',
             ],
 
-            'price' => [
+            'stock' => [
                 'required',
                 'numeric',
                 'min:1',
@@ -239,16 +228,16 @@ class ProductApiValidation
 
             'name.required' => 'Nama produk tidak boleh kosong !',
 
-            'price.required' => 'Harga produk tidak boleh kosong !',
-            'price.numeric' => 'Harga produk harus berupa angka !',
-            'price.min' => 'Harga produk minimal bernilai 1 !',
+            'stock.required' => 'Stok produk tidak boleh kosong !',
+            'stock.numeric' => 'Stok produk harus berupa angka !',
+            'stock.min' => 'Stok produk minimal bernilai 1 !',
         ];
 
         $data = [
-            'product_id' => HashHelper::decrypt($request->product_id),
-            'product_category_id' => HashHelper::decrypt($request->product_category_id),
+            'product_id' => $request->product_id,
+            'product_category_id' => $request->product_category_id,
             'name' => $request->name,
-            'price' => $request->price,
+            'stock' => $request->stock,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();
@@ -287,7 +276,7 @@ class ProductApiValidation
         ];
 
         $data = [
-            'product_id' => HashHelper::decrypt($request->product_id),
+            'product_id' => $request->product_id,
         ];
 
         Validator::make($data, $schema, $errorMessage)->validate();

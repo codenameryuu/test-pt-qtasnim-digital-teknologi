@@ -23,6 +23,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read string $hash_id
+ * @property-read string $highest_quantity_transaction
+ * @property-read string $lowest_quantity_transaction
  * @property-read \App\Models\ProductCategory|null $productCategory
  * @method static \Illuminate\Database\Eloquent\Builder|Product filter(array $input = [], $filter = null)
  * @method static \Illuminate\Database\Eloquent\Builder|Product getPaginatedData($paginate = true, $page = 1, $perPage = 20, $sortKey = 'id', $sortOrder = 'asc', $search = null, $withRelations = [], $filters = [], $appends = [])
@@ -88,7 +90,6 @@ namespace App\Models{
  *
  * @property int $id
  * @property int|null $product_id
- * @property int $stock
  * @property int $quantity
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -111,7 +112,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereLike($column, $value, $boolean = 'and')
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereProductId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereQuantity($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereStock($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Transaction withoutTrashed()

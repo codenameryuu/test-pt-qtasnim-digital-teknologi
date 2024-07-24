@@ -33,30 +33,10 @@ class ProductService
                 return FormatterHelper::formatNumber($row->stock);
             })
             ->addColumn('highestQuantityTransaction', function ($row) {
-                $transaction = Transaction::where('product_id', $row->id)
-                    ->orderBy('quantity', 'desc')
-                    ->first();
-
-                $quantity = 0;
-
-                if ($transaction) {
-                    $quantity = $transaction->quantity;
-                }
-
-                return FormatterHelper::formatNumber($quantity);
+                return FormatterHelper::formatNumber($row->highest_quantity_transaction);
             })
             ->addColumn('lowestQuantityTransaction', function ($row) {
-                $transaction = Transaction::where('product_id', $row->id)
-                    ->orderBy('quantity', 'asc')
-                    ->first();
-
-                $quantity = 0;
-
-                if ($transaction) {
-                    $quantity = $transaction->quantity;
-                }
-
-                return FormatterHelper::formatNumber($quantity);
+                return FormatterHelper::formatNumber($row->lowest_quantity_transaction);
             })
             ->addColumn('action', function ($row) {
                 $edit =

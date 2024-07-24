@@ -3,7 +3,6 @@
 namespace App\Services\Api;
 
 use App\Helpers\CheckHelper;
-use App\Helpers\HashHelper;
 use App\Helpers\MessageHelper;
 
 use App\Models\ProductCategory;
@@ -56,7 +55,7 @@ class ProductCategoryApiService
         $status = true;
         $message = MessageHelper::retrieveSuccess();
 
-        $data = ProductCategory::firstWhere('id', HashHelper::decrypt($request->product_category_id));
+        $data = ProductCategory::firstWhere('id', $request->product_category_id);
 
         $result = (object) [
             'status' => $status,
@@ -112,10 +111,10 @@ class ProductCategoryApiService
             'description' => $request->description,
         ];
 
-        ProductCategory::where('id', HashHelper::decrypt($request->product_category_id))
+        ProductCategory::where('id', $request->product_category_id)
             ->update($data);
 
-        $data = ProductCategory::firstWhere('id', HashHelper::decrypt($request->product_category_id));
+        $data = ProductCategory::firstWhere('id', $request->product_category_id);
 
         $result = (object) [
             'status' => $status,
@@ -137,7 +136,7 @@ class ProductCategoryApiService
         $status = true;
         $message = MessageHelper::deleteSuccess();
 
-        ProductCategory::where('id', HashHelper::decrypt($request->product_category_id))
+        ProductCategory::where('id', $request->product_category_id)
             ->delete();
 
         $result = (object) [

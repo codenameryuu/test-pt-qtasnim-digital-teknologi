@@ -1,7 +1,7 @@
-# Simple API Documentation
+# CRUD Documentation
 
 ## Overview
-This document outlines the setup and structure of simple API. This apps are using :
+This document outlines the setup and structure of CRUD. This apps are using :
 - Laravel 11 as main framework
 - MySQL for database
 - Laravel Passport for authentication
@@ -59,18 +59,23 @@ This document outlines the setup and structure of simple API. This apps are usin
    php artisan queue:listen
    ```
 
-9. **Generate Personal Access Client**
+9. **Generate Keys Passwor**
+   ```bash
+   php artisan passport:keys
+   ```
+
+10. **Generate Personal Access Client**
    ```bash
    php artisan passport:client --personal
    ```
 
 ## Postman Documentation
 ```bash
-https://documenter.getpostman.com/view/14479523/2sA3JQ5fYk
+https://documenter.getpostman.com/view/14479523/2sA3kXDzen
 ```
 
 ## Contributing
-Contributions to the Simple API project are welcome. Please ensure that your code adheres to the Laravel best practices and include tests for new features.
+Contributions to the CRUD project are welcome. Please ensure that your code adheres to the Laravel best practices and include tests for new features.
 
 ## License
-This Simple API is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This CRUD is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

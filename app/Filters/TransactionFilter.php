@@ -13,4 +13,17 @@ class TransactionFilter extends ModelFilter
      * @var array
      */
     public $relations = [];
+
+    /**
+     ** Filter search
+     *
+     * @param $search
+     * @return QueryBuilder
+     */
+    public function search($search)
+    {
+        return $this->where(function ($query) use ($search) {
+            return $query->WhereRaw('CAST(quantity AS CHAR) LIKE ?', "%{$search}%");
+        });
+    }
 }
